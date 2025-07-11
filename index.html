@@ -56,22 +56,14 @@
         const form = document.getElementById("fieldVisitForm");
         form.addEventListener("submit", async (e) => {
           e.preventDefault();
-
-          const formData = new FormData(form);
-          const obj = {};
-          formData.forEach((value, key) => {
-            obj[key] = value;
-          });
-
           document.getElementById("status").innerText = "Submitting...";
 
+          const formData = new FormData(form);
+
           try {
-            const response = await fetch("https://script.google.com/macros/s/AKfycbw6ngCvYBFnIvlNfy-ughGSaeEQT4C1zG-2r9a4wMrq7P2FP-uG1Qfh1TnLslMe-gEK/exec", {
+            const response = await fetch("https://script.google.com/macros/s/AKfycbxWjuJSlseBTpoZKRuaBuAh3WqRMplPVKJ0742g3xvMNEVicGcVInz0zHehqpw0kDhe/exec", {
               method: "POST",
-              body: JSON.stringify(obj),
-              headers: {
-                "Content-Type": "application/json"
-              }
+              body: formData
             });
 
             const text = await response.text();
